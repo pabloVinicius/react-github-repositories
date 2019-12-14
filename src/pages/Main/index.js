@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 import { Container, Form, SubmitButton, List } from './styles';
 
@@ -62,7 +63,9 @@ const Main = () => {
         {repositories.map(el => (
           <li key={el.name}>
             <span>{el.name}</span>
-            <a href="">Detalhes</a>
+            <Link to={`/repository/${encodeURIComponent(el.name)}`}>
+              Detalhes
+            </Link>
           </li>
         ))}
       </List>

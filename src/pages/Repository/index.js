@@ -1,7 +1,7 @@
 import React from 'react';
 
-const index = () => {
-  return <div>Repository</div>;
+const Repository = ({ match }) => {
+  return <div>Repository: {decodeURIComponent(match.params.repository)}</div>;
 };
 
-export default index;
+export default Repository;
