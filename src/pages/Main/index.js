@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
-import { Container, Form, SubmitButton } from './styles';
+import { Container, Form, SubmitButton, List } from './styles';
 
 import api from '../../services/api';
 
@@ -46,6 +46,14 @@ const Main = () => {
           )}
         </SubmitButton>
       </Form>
+      <List>
+        {repositories.map(el => (
+          <li key={el.name}>
+            <span>{el.name}</span>
+            <a href="">Detalhes</a>
+          </li>
+        ))}
+      </List>
     </Container>
   );
 };
