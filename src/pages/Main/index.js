@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 import { Container, Form, SubmitButton, List } from './styles';
 
@@ -8,6 +8,18 @@ const Main = () => {
   const [loading, changeLoading] = useState(false);
   const [newRepo, changeNewRepo] = useState('');
   const [repositories, changeRepositories] = useState([]);
+
+  useEffect(() => {
+    const localRepositories = localStorage.getItem('repositories');
+
+    if (localRepositories) {
+      changeRepositories(JSON.parse(localRepositories));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('repositories', JSON.stringify(repositories));
+  }, [repositories]);
 
   const handleSubmit = async e => {
     e.preventDefault();
