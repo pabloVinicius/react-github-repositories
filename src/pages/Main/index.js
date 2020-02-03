@@ -82,7 +82,7 @@ const Main = () => {
         <div>
           <FaGithubAlt color="#fff" size={35} />
         </div>
-        <h1>GitHub Repos</h1>
+        <h1>GitHub Repositories</h1>
       </div>
       <Form onSubmit={handleSubmit} error={error}>
         <div>
