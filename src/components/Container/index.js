@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+export default styled.div`
   max-width: 700px;
   background: #fff;
   border-radius: 4px;
@@ -8,15 +8,28 @@ const Container = styled.div`
   padding: 30px;
   margin: 80px auto;
 
-  h1 {
-    font-size: 20px;
+  & > div {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    width: 100%;
 
-    svg {
-      margin-right: 10px;
+    h1 {
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      color: #7159c1;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background: #7159c1;
+      margin-bottom: 5px;
     }
   }
 `;
-
-export default Container;

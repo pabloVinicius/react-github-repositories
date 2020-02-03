@@ -1,36 +1,36 @@
 import styled, { keyframes, css } from 'styled-components';
 
-export const Container = styled.div`
-  max-width: 700px;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  margin: 80px auto;
-
-  h1 {
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-
-    svg {
-      margin-right: 10px;
-    }
-  }
-`;
-
 export const Form = styled.form`
   margin-top: 30px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+
+  div {
+    flex: 1;
+    display: flex;
+  }
 
   input {
     flex: 1;
     border: 1px solid #eee;
+
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 16px;
+    transition: border 300ms;
   }
+
+  ${props =>
+    props.error &&
+    css`
+      input {
+        border: 1px solid rgb(212, 83, 83);
+      }
+
+      small {
+        color: rgb(212, 83, 83);
+      }
+    `}
 `;
 
 const rotate = keyframes`
@@ -45,7 +45,7 @@ const rotate = keyframes`
 
 export const SubmitButton = styled.button.attrs(props => ({
   type: 'submit',
-  disabled: props.loading,
+  disabled: props.loading || props.disabled,
 }))`
   background: #7159c1;
   border: 0;
@@ -79,13 +79,42 @@ export const List = styled.ul`
     justify-content: space-between;
     align-items: center;
 
-    & + li {
-      border-top: 1px solid #eee;
-    }
-  }
+    div {
+      display: flex;
+      align-items: center;
 
-  a {
-    color: #7159c1;
-    text-decoration: none;
+      img {
+        width: 40px;
+        border-radius: 40px;
+        margin-right: 10px;
+        object-position: center;
+        object-fit: cover;
+      }
+
+      a {
+        font-size: 18px;
+        color: black;
+        transition: color 300ms;
+        font-weight: 600;
+
+        :hover {
+          color: #7159c1;
+        }
+        text-decoration: none;
+      }
+
+      & + li {
+        border-top: 1px solid #eee;
+      }
+
+      :last-of-type {
+        & > a {
+          margin-right: 10px;
+        }
+        svg {
+          cursor: pointer;
+        }
+      }
+    }
   }
 `;
