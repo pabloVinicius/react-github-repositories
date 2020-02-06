@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io';
 import api from '../../services/api';
 import Container from '../../components/Container';
+import Loading from '../../components/Loading';
 
-import { Loading, Owner, IssueList } from './styles';
+import {
+  LoadingContainer,
+  Owner,
+  IssueList,
+  ReturnLink,
+  PaginationAnchors,
+} from './styles';
 
 const Repository = ({ match }) => {
   const [repository, changeRepository] = useState({});
   const [issues, changeIssues] = useState({});
+  const [page, changePage] = useState(0);
   const [loading, changeLoading] = useState(true);
 
   const getRepoDetails = async () => {
@@ -20,6 +28,7 @@ const Repository = ({ match }) => {
         params: {
           state: 'open',
           per_page: 5,
+          page,
         },
       }),
     ]);
@@ -34,31 +43,51 @@ const Repository = ({ match }) => {
   }, []);
 
   return loading ? (
-    <Loading>Carregando...</Loading>
+    <LoadingContainer>
+      <Loading />
+    </LoadingContainer>
   ) : (
     <Container>
+      <ReturnLink to="/">
+        <IoMdArrowRoundBack size={20} />
+        Back to repositories
+      </ReturnLink>
+
       <Owner>
-        <Link to="/">Voltar aos repositórios</Link>
         <img src={repository.owner.avatar_url} alt={repository.owner.login} />
         <h1>{repository.name}</h1>
         <p>{repository.description}</p>
       </Owner>
       <IssueList>
         {issues.map(issue => (
-          <li key={`${issue.id}`}>
-            <img src={issue.user.avatar_url} alt={issue.user.login} />
-            <div>
-              <strong>
-                <a href={issue.html_url}>{issue.title}</a>
-                {issue.labels.map(label => (
-                  <span key={`${label.id}`}>{label.name}</span>
-                ))}
-              </strong>
-              <p>{issue.user.login}</p>
-            </div>
-          </li>
+          <a href={issue.html_url} target="_blank" rel="noopener noreferrer">
+            <li key={`${issue.id}`}>
+              <img src={issue.user.avatar_url} alt={issue.user.login} />
+              <div>
+                <strong>
+                  {issue.title}
+                  {issue.labels.map(label => (
+                    <span key={`${label.id}`}>{label.name}</span>
+                  ))}
+                </strong>
+                <p>{issue.user.login}</p>
+              </div>
+            </li>
+          </a>
         ))}
       </IssueList>
+      <PaginationAnchors>
+        {page > 0 && (
+          <span className="previous" onClick={() => changePage(page - 1)}>
+            <IoMdArrowRoundBack size={20} />
+            Previous
+          </span>
+        )}
+        <span className="next" onClick={() => changePage(page + 1)}>
+          Next
+          <IoMdArrowRoundForward size={20} />
+        </span>
+      </PaginationAnchors>
     </Container>
   );
 };

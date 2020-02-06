@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+
   * {
     margin: 0;
     padding: 0;
@@ -20,7 +22,7 @@ export default createGlobalStyle`
   body, input, button {
     color: #222;
     font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
   }
 
   button {

@@ -116,7 +116,7 @@ const Main = () => {
               </Link>
             </div>
             <div>
-              <a href={el.url} target="_blank">
+              <a href={el.url} target="_blank" rel="noopener noreferrer">
                 <FaExternalLinkAlt color="#7159c1" size={24} />
               </a>
               <FaTrash

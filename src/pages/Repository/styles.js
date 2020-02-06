@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const Loading = styled.div`
+export const LoadingContainer = styled.div`
   color: #fff;
   font-size: 30px;
   font-weight: bold;
@@ -49,14 +50,28 @@ export const IssueList = styled.ul`
   border-top: 1px solid #eee;
   list-style: none;
 
+  a {
+    text-decoration: none;
+  }
+
   li {
     display: flex;
     padding: 15px 30px;
     border: 1px solid #eee;
     border-radius: 4px;
+    margin-bottom: 10px;
+    background: white;
+    transition: all 300ms;
 
-    & + li {
-      margin-top: 10px;
+    :hover {
+      background: #7159c1;
+      strong {
+        color: white;
+      }
+
+      p {
+        color: white;
+      }
     }
 
     img {
@@ -72,15 +87,8 @@ export const IssueList = styled.ul`
 
       strong {
         font-size: 16px;
-
-        a {
-          text-decoration: none;
-          color: #333;
-
-          &:hover {
-            color: #7159c1;
-          }
-        }
+        color: #333;
+        transition: all 300ms;
 
         span {
           background: #eee;
@@ -95,10 +103,50 @@ export const IssueList = styled.ul`
       }
 
       p {
+        transition: all 300ms;
         margin-top: 5px;
         font-size: 12px;
         color: #999;
       }
     }
+  }
+`;
+
+export const ReturnLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  svg {
+    margin-right: 10px;
+  }
+`;
+
+export const PaginationAnchors = styled.div`
+  display: flex;
+  flex-direction: row !important;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+
+  span {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &.previous {
+      margin-right: auto;
+    }
+
+    &.next {
+      margin-left: auto;
+    }
+  }
+
+  svg {
+    margin: 5px;
   }
 `;
