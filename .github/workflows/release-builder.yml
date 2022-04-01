@@ -6,7 +6,6 @@ on:
 
 jobs:
   build_release:
-    if: contains(github.ref, 'release')
     runs-on: ubuntu-latest
     steps:
       - name: Generate changelog
