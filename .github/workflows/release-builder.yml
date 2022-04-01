@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Generate changelog
         id: changelog-builder
-        uses: pabloVinicius/release-builder@v0.3
+        uses: pabloVinicius/release-builder@v0.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit changelog file
