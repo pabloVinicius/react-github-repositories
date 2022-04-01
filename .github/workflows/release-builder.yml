@@ -1,0 +1,25 @@
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  build_release:
+    if: contains(github.ref, 'release/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate changelog
+        id: changelog-builder
+        uses: pabloVinicius/release-builder@v0.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit changelog file
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: Update changelog
+          default_author: github_actions
+      - name: Update PR description
+        uses: kt3k/update-pr-description@v1.0.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_body: ${{ steps.changelog-builder.outputs.changelog }}
+          destination_branch: ${{ github.base_ref }}
