@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world step
         id: hello
-        uses: pabloVinicius/hello-world-javascript-action@v1.0
+        uses: pabloVinicius/hello-world-javascript-action@v1.1
         with:
           who-to-greet: 'Pabloww'
       - name: Get the hello world output time
