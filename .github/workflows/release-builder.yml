@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Generate changelog
         id: changelog-builder
-        uses: pabloVinicius/release-builder@v0.1
+        uses: pabloVinicius/release-builder@v0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit changelog file
