@@ -1,6 +1,8 @@
 on:
   pull_request:
     types: [opened]
+    branches:
+      - staging
 
 jobs:
   build_release:
