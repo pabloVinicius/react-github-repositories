@@ -1,0 +1,14 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: Simple job to say hello
+    steps:
+      - name: Hello world step
+        id: hello
+        uses: pabloVinicius/hello-world-javascript-actionv@1.0
+        with:
+          who-to-greet: 'Pabloww'
+      - name: Get the hello world output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
