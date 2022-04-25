@@ -18,7 +18,7 @@ jobs:
           git config user.email "<>"
       - name: Generate changelog
         id: changelog-builder
-        uses: pabloVinicius/release-builder@v0.10
+        uses: pabloVinicius/release-builder@v0.12
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit changelog file
